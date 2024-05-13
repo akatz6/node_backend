@@ -43,7 +43,11 @@ const register = async (req, res) => {
       process.env.WEB_TOKEN,
       { expiresIn: "1h" }
     );
-    res.json(token);
+    const obj = {
+      user,
+      token,
+    };
+    res.json(obj);
   } else {
     res.send("Something didn't work");
   }
