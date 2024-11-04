@@ -5,6 +5,8 @@ const {
   register,
   users,
   user,
+  userGet,
+  userDelete
 } = require("../controllers/authController");
 
 function middleware(req, res, next) {
@@ -17,6 +19,8 @@ function middleware(req, res, next) {
 
 router.post("/login", login);
 router.get("/users", middleware, users);
+router.get("/user/:id", middleware, userGet);
+router.delete("/user/:id", middleware, userDelete)
 router.put("/user/:id", middleware, user);
 router.post("/register", register);
 

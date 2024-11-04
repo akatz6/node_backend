@@ -25,6 +25,16 @@ const login = async (req, res) => {
   }
 };
 
+const userDelete = async (req, res) => {
+  const id = Number(req.params.id);
+  const deleteUser = await prisma.user.delete({
+    where: {
+      id,
+    },
+  })
+  res.send(deleteUser)
+}
+
 const register = async (req, res) => {
   const { email, password } = req.body;
   const salt = await bcrypt.genSalt(10);
@@ -60,6 +70,15 @@ const users = async (req, res) => {
   } else {
     res.send("Table is empty");
   }
+};
+const userGet = async (req, res) => {
+  const id = Number(req.params.id);
+  const user = await prisma.user.findFirst({
+    where: {
+      id,
+    },
+  });
+  res.send(user);
 };
 
 const user = async (req, res) => {
@@ -107,4 +126,6 @@ module.exports = {
   register,
   users,
   user,
+  userGet,
+  userDelete
 };
