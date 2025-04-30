@@ -1,4 +1,4 @@
-const { router } = require("../common/common");
+const router = require("express").Router();
 const axios = require("axios");
 const {
   login,
